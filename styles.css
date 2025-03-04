@@ -1,0 +1,52 @@
+/* Atur seluruh halaman */
+body {
+    background-color: black; /* Latar belakang hitam */
+    color: black; /* Warna teks default hitam */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: deepskyblue; /* Kotak header warna AQUA */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 80%;
+}
+
+/* Bagian konten utama */
+.content {
+    background-color: deepskyblue; /* Kotak teks warna AQUA */
+    color: black; /* Warna font hitam */
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+/* Navbar */
+.navbar {
+    margin-top: 20px;
+}
+
+/* Tombol Navbar */
+.navbar button {
+    background-color: deepskyblue; /* Warna tombol AQUA */
+    color: black; /* Warna teks tombol hitam */
+    border: none;
+    padding: 15px 30px;
+    margin: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.navbar button:hover {
+    background-color: #00cccc; /* Efek hover tombol sedikit lebih gelap */
+}

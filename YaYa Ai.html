@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<link rel="stylesheet" href="YaYa.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>YaYa AI</h1>
+
+    <!-- Chat Container -->
+    <div id="chat-container">
+        <div id="chat-box"></div>
+    </div>
+
+    <!-- Input -->
+    <div id="input-container">
+        <input type="text" id="userQuestion" placeholder="Ketik pesan..." onkeypress="handleKeyPress(event)">
+        <button onclick="askAI()">Kirim</button>
+        <button onclick="goHome()" id="homeButton">Halaman Utama</button>
+    </div>
+
+    <script>
+        const API_KEY = "AIzaSyC5TFTs8XIWCLlsB2l6DKwqOQrydxOlYVI"; // Ganti dengan API Key dari Google AI
+
+        // Tambahkan pesan sapaan saat halaman dimuat
+        window.onload = function() {
+            let chatBox = document.getElementById("chat-box");
+
+            let greetingMessage = document.createElement("div");
+            greetingMessage.classList.add("chat", "ai");
+            greetingMessage.textContent = "Halo! Saya adalah asisten yang siap membantumu kapan saja! Ada yang bisa saya bantu? Jangan ragu ajukan pertanyaanmu, Ya!";
+            chatBox.appendChild(greetingMessage);
+        };
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                askAI();
+            }
+        }
+
+        async function askAI() {
+            let question = document.getElementById("userQuestion").value;
+            let chatBox = document.getElementById("chat-box");
+
+            if (question.trim() === "") return;
+
+            // Tambahkan pesan pengguna ke chat
+            let userMessage = document.createElement("div");
+            userMessage.classList.add("chat", "user");
+            userMessage.textContent = question;
+            chatBox.appendChild(userMessage);
+
+            // Kosongkan input setelah dikirim
+            document.getElementById("userQuestion").value = "";
+
+            // Tampilkan status AI mengetik
+            let aiMessage = document.createElement("div");
+            aiMessage.classList.add("chat", "ai");
+            aiMessage.textContent = "Mengetik...";
+            chatBox.appendChild(aiMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            try {
+                let response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: question }] }]
+                    })
+                });
+
+                let data = await response.json();
+                let answer = data.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf, AI tidak dapat menjawab saat ini.";
+
+                // Perbarui jawaban AI
+                aiMessage.textContent = answer;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (error) {
+                console.error("Error:", error);
+                aiMessage.textContent = "Terjadi kesalahan. Coba lagi nanti.";
+            }
+        }
+
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

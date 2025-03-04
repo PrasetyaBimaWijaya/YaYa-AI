@@ -1,0 +1,126 @@
+/* Gaya Umum */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Container Chat */
+#chat-container {
+    width: 90%;
+    max-width: 800px;
+    height: 800px; /* Lebih tinggi */
+    background: dodgerblue;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+    margin: 0 auto 20px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Chat Box */
+#chat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+/* Chat Message */
+.chat {
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 80%;
+    text-align: left; /* Rata kiri */
+    line-height: 1.8; /* Spasi antar baris lebih nyaman */
+    word-wrap: break-word;
+    white-space: pre-wrap; /* Menjaga format puisi, lirik, dan paragraf */
+    overflow-wrap: break-word;
+    font-size: 16px;
+}
+
+/* Pesan panjang AI */
+.chat.ai {
+    max-width: 70%; /* Pesan panjang bisa menggunakan seluruh lebar */
+    overflow: hidden;
+    white-space: pre-wrap; /* Membantu teks panjang tetap rapi */
+}
+
+/* User Chat */
+.user {
+    background-color: grey;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+/* AI Chat */
+.ai {
+    background-color: black;
+    color: white;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+}
+
+/* Input Container */
+#input-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Input */
+input {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Tombol */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Tombol Halaman Utama */
+#homeButton {
+    background-color: #28a745;
+}
+
+#homeButton:hover {
+    background-color: #218838;
+}
+
+/* Animasi Loading */
+@keyframes dots {
+    0% { content: "."; }
+    33% { content: ".."; }
+    66% { content: "..."; }
+    100% { content: "."; }
+}
+
+.ai::after {
+    content: "...";
+    display: inline-block;
+    animation: dots 1.5s;
+}
