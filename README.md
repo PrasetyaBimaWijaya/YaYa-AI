@@ -1,1 +1,1 @@
-# YaYa-AI
+YaYa.AI
